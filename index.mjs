@@ -36,15 +36,34 @@ app.get('/', async (req, res) => {
 
 // DYNAMIC PLANET ROUTE: Handles all Planets, Asteroids, and Comets!
 app.get('/planetInfo', (req, res) => {
-    // This grabs the planet name from the URL (e.g., /planetInfo?planet=Mars)
+    // This grabs the planet name from the URL (stuff like... /planetInfo?planet=Mars)
     const requestedObject = req.query.planet; 
     
-    // Dynamically call the package function (e.g., planets.getMars())
+    // Dynamically call the package function (stuff like... planets.getMars())
     let planetData = planets[`get${requestedObject}`]();
     
-    // Fix broken Mars image from the package (as mentioned in Lecture 2)
-    if (requestedObject === "Mars") {
+    // Fix broken Mars, Jupiter, Uranus images from the package (as mentioned in Lecture 2)
+     if (requestedObject === "Mars") {
         planetData.image = "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg";
+    } else if (requestedObject === "Jupiter") {
+        planetData.image = "https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg";
+    } else if (requestedObject === "Uranus") {
+        planetData.image = "https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg";
+    }
+
+   //Fix missing descriptions for Asteroids and Comets
+    if (requestedObject === "Asteroids") {
+        planetData.description = planetData.def;
+        planetData.distanceFromSun = "2.2 to 3.2 AU (Main Belt)";
+        planetData.yearLength = "3 to 6 Earth Years";
+        planetData.radius = "Up to 296 miles (Ceres)";
+        planetData.moons = "Some have small moons (like Ida, which has Dactyl)";
+    } else if (requestedObject === "Comets") {
+        planetData.description = planetData.def;
+        planetData.distanceFromSun = "Highly eccentric (plunges toward Sun, retreats past Neptune)";
+        planetData.yearLength = "A few years to millions of years";
+        planetData.radius = "Nucleus is typically 0.6 to 6 miles";
+        planetData.moons = "0";
     }
 
     // Pass the name and data to a single EJS file
