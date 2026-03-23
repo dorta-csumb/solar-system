@@ -1,4 +1,27 @@
-body{
-    text-align: center;
-    
+body {
+    background-color: #f4f6f9; /* 1. background-color */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 2. font-family */
+}
+
+h1 {
+    letter-spacing: 2px; /* 3. letter-spacing */
+    text-transform: uppercase; /* 4. text-transform */
+    text-align: center; /* 5. text-align */
+}
+
+.custom-img {
+    max-height: 450px; /* 6. max-height */
+    object-fit: cover; /* 7. object-fit */
+    border: 4px solid #0dcaf0; /* 8. border */
+    border-radius: 12px; /* 9. border-radius */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2); /* 10. box-shadow */
+}
+
+.custom-card {
+    line-height: 1.6; /* 11. line-height */
+    transition: transform 0.3s ease-in-out; /* 12. transition */
+}
+
+.custom-card:hover {
+    transform: scale(1.02); /* 13. transform */
 }
